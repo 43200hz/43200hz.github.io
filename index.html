@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ily</title>
+    <style>
+        /* Basic layout styling */
+        body {
+            background: linear-gradient(135deg, #4a4a4a, #1a1a1a);
+            font-family: 'Arial', sans-serif;
+            color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .colLeft {
+            width: 60%;
+        }
+
+        .colRight {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Style for the global player */
+        #player {
+            background: linear-gradient(135deg, #6b6b6b, #4a4a4a);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            padding: 20px;
+            width: 100%; /* Ensures the player takes full width of the column */
+            max-width: 300px; /* Set a max width for the player */
+        }
+
+        #player img {
+            width: 100%; /* Make image responsive */
+            height: auto; /* Maintain aspect ratio */
+            max-width: 200px; /* Limit image width */
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 3px solid #ffffff; /* White border around cover image */
+            border-radius: 10px;
+        }
+
+        /* Style the input range for volume and seek bar */
+        input[type="range"] {
+            -webkit-appearance: none;
+            background: #999999; /* Track color */
+            height: 5px; /* Height of the track */
+            border-radius: 5px;
+            outline: none;
+            width: 100%; /* Full width */
+            margin: 10px 0; /* Margin for spacing */
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px; /* Width of the thumb */
+            height: 20px; /* Height of the thumb */
+            border-radius: 50%; /* Circular thumb */
+            background: white; /* Color of the thumb */
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Seek bar specific styles */
+        #seek-bar {
+            background: #666666; /* Darker track color for seek bar */
+        }
+
+        /* Control buttons */
+        .control-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .control-buttons button {
+            background-color: lightgrey; /* Light grey button */
+            border: none;
+            color: black; /* Change text color for visibility */
+            font-size: 18px;
+            padding: 15px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 50px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .control-buttons button:hover {
+            background-color: #cccccc; /* Light grey on hover */
+        }
+
+        .control-buttons button:focus {
+            outline: none;
+        }
+
+        .play-pause-icon {
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+
+        .play-icon {
+            border-width: 15px 0 15px 25px;
+            border-color: transparent transparent transparent black;
+        }
+
+        .pause-icon {
+            border-width: 0;
+            border-color: transparent;
+            display: flex;
+            width: 158px;
+            height: 24px;
+            background-color: black;
+            margin-right: px;
+        }
+
+        .audio-control {
+            cursor: pointer;
+            padding: 5px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <div class="header header-container">
+            <div>
+                <div class="navBar">
+                    <div class="logo">
+                        <h1><span>ily</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <section class="container">
+        <!-- MP3s on the left -->
+        <div class="colLeft">
+            <h3 class="audio-control" data-src="Cristenalbum/me n u.mp3"><b>1</b> - Me n U</h3> 
+            <h3 class="audio-control" data-src="Cristenalbum/imu.mp3"><b>2</b> - imu</h3> 
+            <h3 class="audio-control" data-src="Cristenalbum/mwah!.mp3"><b>3</b> - Mwah!</h3> 
+            <h3 class="audio-control" data-src="Cristenalbum/sky.mp3"><b>4</b> - Sky</h3> 
+            <h3 class="audio-control" data-src="Cristenalbum/your eyes.mp3"><b>5</b> - Your Eyes</h3> 
+            <h3 class="audio-control" data-src="Cristenalbum/stargaze.mp3"><b>6</b> - Stargaze</h3> 
+            <h3 class="audio-control" data-src="Cristenalbum/butterflies.mp3"><b>7</b> - Butterflies</h3> 
+            <h3 class="audio-control" data-src="Cristenalbum/mine.mp3"><b>8</b> - Mine</h3> 
+            <h3 class="audio-control" data-src="Cristenalbum/our time.mp3"><b>9</b> - Our Time</h3> 
+            <h3 class="audio-control" data-src="Cristenalbum/93.mp3"><b>10</b> - 93</h3> 
+            <h3 class="audio-control" data-src="Cristenalbum/fly.mp3"><b>11</b> - Fly</h3> 
+            <h3 class="audio-control" data-src="Cristenalbum/as per request.mp3"><b>12</b> - As Per Request</h3> 
+            <h3 class="audio-control" data-src="Cristenalbum/lets rate it.mp3"><b>13</b> - Let's Rate It</h3> 
+            <h3 class="audio-control" data-src="Cristenalbum/love.mp3"><b>14</b> - Love</h3> 
+        </div>
+
+        <!-- Global Player controls and volume control -->
+        <div class="colRight">
+            <div id="player">
+                <!-- Static cover image -->
+                <img id="cover-image" src="Cristenalbum/bmi.jpg" alt="Cover Image">
+                <!-- Seek bar -->
+                <input id="seek-bar" type="range" value="0" min="0" max="100">
+                <!-- Volume control for all audios -->
+                <input id="volume-control" type="range" min="0" max="100" value="100">
+                <!-- Control button (Play/Pause Toggle) -->
+                <div class="control-buttons">
+                    <button id="play-pause-button">
+                        <div id="play-pause-icon" class="play-pause-icon play-icon"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const audioElements = document.querySelectorAll('.audio-control');
+            const playPauseButton = document.getElementById('play-pause-button');
+            const playPauseIcon = document.getElementById('play-pause-icon');
+            const seekBar = document.getElementById('seek-bar');
+            const volumeControl = document.getElementById('volume-control');
+            let currentAudio = new Audio();
+            let isPlaying = false;
+            let currentIndex = -1;
+
+            // Array of audio sources
+            const tracks = Array.from(audioElements).map(el => el.getAttribute('data-src'));
+
+            // Function to play the selected audio
+            function loadTrack(index) {
+                if (index >= 0 && index < tracks.length) {
+                    currentAudio.src = tracks[index];
+                    currentAudio.play();
+                    currentIndex = index;
+                    isPlaying = true;
+                    updatePlayPauseIcon();
+                }
+            }
+
+            // Toggle play/pause icon based on state
+            function updatePlayPauseIcon() {
+                if (isPlaying) {
+                    playPauseIcon.classList.remove('play-icon');
+                    playPauseIcon.classList.add('pause-icon');
+                } else {
+                    playPauseIcon.classList.remove('pause-icon');
+                    playPauseIcon.classList.add('play-icon');
+                }
+            }
+
+            // Click on any audio title to load it
+            audioElements.forEach((el, index) => {
+                el.addEventListener('click', function() {
+                    loadTrack(index);
+                });
+            });
+
+            // Play/Pause button logic
+            playPauseButton.addEventListener('click', function() {
+                if (isPlaying) {
+                    currentAudio.pause();
+                    isPlaying = false;
+                } else {
+                    if (currentAudio.src) {
+                        currentAudio.play();
+                    } else if (currentIndex >= 0) {
+                        loadTrack(currentIndex);
+                    } else {
+                        loadTrack(0);  // play first track if nothing selected
+                    }
+                    isPlaying = true;
+                }
+                updatePlayPauseIcon();
+            });
+
+            // Volume control
+            volumeControl.addEventListener('input', function() {
+                currentAudio.volume = volumeControl.value / 100;
+            });
+
+            // Seek bar update
+            currentAudio.addEventListener('timeupdate', function() {
+                seekBar.value = (currentAudio.currentTime / currentAudio.duration) * 100;
+            });
+
+            // Change audio position based on seek bar
+            seekBar.addEventListener('input', function() {
+                currentAudio.currentTime = (seekBar.value / 100) * currentAudio.duration;
+            });
+        });
+    </script>
+</body>
+</html>
